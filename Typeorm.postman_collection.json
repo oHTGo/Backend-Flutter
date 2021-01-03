@@ -1,0 +1,163 @@
+{
+	"info": {
+		"_postman_id": "0ecd8abc-86d8-407b-a2e8-7e052ec168e6",
+		"name": "Typeorm",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Client",
+			"item": [
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"fullName\": \"Nguyen Nhat Huy\",\r\n    \"description\": \"A vice president\",\r\n    \"phoneNumber\": \"0783329134\",\r\n    \"avatarUrl\": \"google.com\",\r\n    \"createdBy\": \"admin\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/{{version}}/clients",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"{{version}}",
+								"clients"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Clients",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"createdBy\": \"admin\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/{{version}}/clients",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"{{version}}",
+								"clients"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Client By Id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"createdBy\": \"admin\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/{{version}}/clients/05913d0c-487b-4e17-8979-5855a8039769",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"{{version}}",
+								"clients",
+								"05913d0c-487b-4e17-8979-5855a8039769"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Client By Id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"createdBy\": \"admin\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/{{version}}/clients/05913d0c-487b-4e17-8979-5855a8039769",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"{{version}}",
+								"clients",
+								"05913d0c-487b-4e17-8979-5855a8039769"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Client By Id",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"createdBy\": \"admin\",\r\n    \"fullName\": \"Kien Tran\",\r\n    \"description\": \"F-code vice president\",\r\n    \"phoneNumber\": \"843329134\",\r\n    \"avatarUrl\": \"pornhub.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/{{version}}/clients/22294979-b7bf-4365-a949-b6075656dc1f",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"{{version}}",
+								"clients",
+								"22294979-b7bf-4365-a949-b6075656dc1f"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

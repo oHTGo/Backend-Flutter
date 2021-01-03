@@ -1,7 +1,7 @@
 {
-  "name": "typeorm_ts",
+  "name": "backend-flutter",
   "version": "0.0.1",
-  "description": "Awesome project developed with TypeORM.",
+  "description": "Backend for flutter",
   "license": "ISC",
   "scripts": {
     "start": "ts-node src/index.ts",

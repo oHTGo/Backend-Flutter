@@ -1,7 +1,7 @@
-import * as lodash from 'lodash';
+import * as _ from 'lodash';
 
 export const errorParser = (validateErrors) => {
-  return lodash.map(validateErrors, (item) => {
-    return lodash.values(item.constraints)[0];
+  return _.map(validateErrors, (item) => {
+    return _.values(item.constraints)[0];
   });
 };

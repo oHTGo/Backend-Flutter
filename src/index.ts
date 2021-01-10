@@ -39,8 +39,7 @@ createConnection()
     // catch 404 and forward to error handler
     app.use(async (req, res, next) => {
       next({
-        success: false,
-        statusCode: 404,
+        status: 'error',
         message: 'Unable to locate the requested resource'
       });
     });
@@ -54,7 +53,7 @@ createConnection()
         chalk.black(
           chalk.bgGreen(
             `Express server has started on ${chalk.underline.bold(
-              `http://localhost:${port}/users`
+              `http://localhost:${port}`
             )}`
           )
         )

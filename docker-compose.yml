@@ -1,24 +1,32 @@
-version: '3'
-services:
-  mysql:
-    image: mysql:5.7
-    container_name: flutter_database
-    ports:
-      - 3306:3306
-    environment:
-      MYSQL_ROOT_PASSWORD: password #password of database
-      MYSQL_DATABASE: flutter_project
-    volumes:
-      - mysql_data:/var/lib/mysql
+version: '3.7'
 
-  backend:
-    image: ohtgo/flutter-backend
-    container_name: flutter_backend
+services:
+  api:
+    image: node:12.16.3
     depends_on:
       - mysql
+    command: >
+      sh -c "yarn &&
+            yarn start"
     ports:
-      - 5000:5000
-    network_mode: 'host'
+      - '5000:5000'
+    working_dir: /app
+    volumes:
+      - ./:/app
+    environment:
+      MYSQL_HOST: '${MYSQL_HOST}'
+      MYSQL_USER: '${MYSQL_USER}'
+      MYSQL_PASSWORD: '${MYSQL_PW}'
+      MYSQL_DB: '${MYSQL_DB}'
+
+  mysql:
+    image: mysql:8.0.22
+    command: --default-authentication-plugin=mysql_native_password
+    volumes:
+      - flutter_project:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: '${MYSQL_PW}'
+      MYSQL_DATABASE: '${MYSQL_DB}'
 
 volumes:
-  mysql_data:
+  flutter_project:

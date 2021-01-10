@@ -1,0 +1,24 @@
+version: '3'
+services:
+  mysql:
+    image: mysql:5.7
+    container_name: flutter_database
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: password #password of database
+      MYSQL_DATABASE: flutter_project
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+  backend:
+    image: ohtgo/flutter-backend
+    container_name: flutter_backend
+    depends_on:
+      - mysql
+    ports:
+      - 5000:5000
+    network_mode: 'host'
+
+volumes:
+  mysql_data:

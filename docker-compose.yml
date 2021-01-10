@@ -22,6 +22,8 @@ services:
   mysql:
     image: mysql:8.0.22
     command: --default-authentication-plugin=mysql_native_password
+    ports:
+      - '3306:3306'
     volumes:
       - flutter_project:/var/lib/mysql
     environment:

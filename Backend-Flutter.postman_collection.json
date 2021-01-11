@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "c3d4e274-9af1-4f85-837a-6198cbe76e39",
+		"_postman_id": "1b645d9a-f093-4306-b7f9-43b8ac4c8ab0",
 		"name": "Backend-Flutter",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -27,11 +27,6 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "{{token}}",
-									"type": "string"
-								},
-								{
-									"key": "password",
 									"value": "{{token}}",
 									"type": "string"
 								}
@@ -76,11 +71,6 @@
 									"key": "token",
 									"value": "{{token}}",
 									"type": "string"
-								},
-								{
-									"key": "password",
-									"value": "{{token}}",
-									"type": "string"
 								}
 							]
 						},
@@ -123,11 +113,6 @@
 									"key": "token",
 									"value": "{{token}}",
 									"type": "string"
-								},
-								{
-									"key": "password",
-									"value": "{{token}}",
-									"type": "string"
 								}
 							]
 						},
@@ -168,11 +153,6 @@
 									"key": "token",
 									"value": "{{token}}",
 									"type": "string"
-								},
-								{
-									"key": "password",
-									"value": "{{token}}",
-									"type": "string"
 								}
 							]
 						},
@@ -211,11 +191,6 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "{{token}}",
-									"type": "string"
-								},
-								{
-									"key": "password",
 									"value": "{{token}}",
 									"type": "string"
 								}

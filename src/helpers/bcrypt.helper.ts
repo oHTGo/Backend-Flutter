@@ -1,8 +1,9 @@
-import * as bcrypt from 'bcrypt';
+import * as bcrypt from 'bcryptjs';
+import * as envConfig from '../config';
 
 export default class Hasher {
   public static async hash(password: string) {
-    return await bcrypt.hash(password, parseInt(process.env.SALT));
+    return await bcrypt.hash(password, parseInt(envConfig.SALT));
   }
 
   public static checkHash(unencryptedString: string, hash: string) {

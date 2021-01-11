@@ -49,10 +49,11 @@
 							}
 						},
 						"url": {
-							"raw": "{{host}}/api/{{version}}/clients",
+							"raw": "{{host}}:{{port}}/api/{{version}}/clients",
 							"host": [
 								"{{host}}"
 							],
+							"port": "{{port}}",
 							"path": [
 								"api",
 								"{{version}}",
@@ -95,10 +96,11 @@
 							}
 						},
 						"url": {
-							"raw": "{{host}}/api/{{version}}/clients",
+							"raw": "{{host}}:{{port}}/api/{{version}}/clients",
 							"host": [
 								"{{host}}"
 							],
+							"port": "{{port}}",
 							"path": [
 								"api",
 								"{{version}}",
@@ -141,15 +143,16 @@
 							}
 						},
 						"url": {
-							"raw": "{{host}}/api/{{version}}/clients/6f2f70d0-fdd1-4431-b77c-fb7a4fa5fc02",
+							"raw": "{{host}}:{{port}}/api/{{version}}/clients/{{idClient}}",
 							"host": [
 								"{{host}}"
 							],
+							"port": "{{port}}",
 							"path": [
 								"api",
 								"{{version}}",
 								"clients",
-								"6f2f70d0-fdd1-4431-b77c-fb7a4fa5fc02"
+								"{{idClient}}"
 							]
 						}
 					},
@@ -185,15 +188,16 @@
 							}
 						},
 						"url": {
-							"raw": "{{host}}/api/{{version}}/clients/6f2f70d0-fdd1-4431-b77c-fb7a4fa5fc02",
+							"raw": "{{host}}:{{port}}/api/{{version}}/clients/{{idClient}}",
 							"host": [
 								"{{host}}"
 							],
+							"port": "{{port}}",
 							"path": [
 								"api",
 								"{{version}}",
 								"clients",
-								"6f2f70d0-fdd1-4431-b77c-fb7a4fa5fc02"
+								"{{idClient}}"
 							]
 						}
 					},
@@ -229,15 +233,51 @@
 							}
 						},
 						"url": {
-							"raw": "{{host}}/api/{{version}}/clients/6f2f70d0-fdd1-4431-b77c-fb7a4fa5fc02",
+							"raw": "{{host}}:{{port}}/api/{{version}}/clients/{{idClient}}",
 							"host": [
 								"{{host}}"
 							],
+							"port": "{{port}}",
 							"path": [
 								"api",
 								"{{version}}",
 								"clients",
-								"6f2f70d0-fdd1-4431-b77c-fb7a4fa5fc02"
+								"{{idClient}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"admin\",\r\n    \"password\": \"password\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}:{{port}}/api/{{version}}/auth/",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"{{version}}",
+								"auth",
+								""
 							]
 						}
 					},

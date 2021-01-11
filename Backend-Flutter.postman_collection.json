@@ -1,0 +1,269 @@
+{
+	"info": {
+		"_postman_id": "c3d4e274-9af1-4f85-837a-6198cbe76e39",
+		"name": "Backend-Flutter",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Client",
+			"item": [
+				{
+					"name": "Create",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"fullName\": \"Nguyen Nhat Huy\",\r\n    \"description\": \"A vice president\",\r\n    \"phoneNumber\": \"0783329134\",\r\n    \"avatarUrl\": \"google.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/{{version}}/clients",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"{{version}}",
+								"clients"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Clients",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/{{version}}/clients",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"{{version}}",
+								"clients"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Client By Id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/{{version}}/clients/6f2f70d0-fdd1-4431-b77c-fb7a4fa5fc02",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"{{version}}",
+								"clients",
+								"6f2f70d0-fdd1-4431-b77c-fb7a4fa5fc02"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Client By Id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/{{version}}/clients/6f2f70d0-fdd1-4431-b77c-fb7a4fa5fc02",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"{{version}}",
+								"clients",
+								"6f2f70d0-fdd1-4431-b77c-fb7a4fa5fc02"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Client By Id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"fullName\": \"Kien Tran\",\r\n    \"description\": \"F-code vice president\",\r\n    \"phoneNumber\": \"843329134\",\r\n    \"avatarUrl\": \"pornhub.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/{{version}}/clients/6f2f70d0-fdd1-4431-b77c-fb7a4fa5fc02",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"{{version}}",
+								"clients",
+								"6f2f70d0-fdd1-4431-b77c-fb7a4fa5fc02"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

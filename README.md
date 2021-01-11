@@ -1,7 +1,20 @@
-# Awesome Project Build with TypeORM
+# Backend Flutter F-Code
 
-Steps to run this project:
+## Instruction 
+Clone this repo: 
+`$ git clone https://github.com/oHTGo/Backend-Flutter`
 
-1. Run `npm i` command
-2. Setup database settings inside `ormconfig.json` file
-3. Run `npm start` command
+## Setup Project: 
+Install Yarn: `$ npm install yarn -g`
+Install dependencies: `$ yarn`
+Create a file called `.env` and `ormconfig.env` with the content taken from `.env.example` and `ormconfig.env.example` in folder `env_example`
+
+## Setup Docker
+Setup Docker: Google
+Run `$ docker-compose up -d` and wait for docker to run the container
+
+## Setup Postman API
+- Import 2 files:
+`Backend Environments.postman_environment.json` and `Backend-Flutter.postman_collection.json`
+- Edit `variable environments` in Postman: `host`, `port`, `version` and some other variables
+- Use `API`

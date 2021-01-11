@@ -6,7 +6,7 @@ import asyncCatch from '../../helpers/asyncCatch.helper';
 import sendSuccess from '../../helpers/success.helper';
 
 export default asyncCatch(async (req: Request, res: Response) => {
-  const user: any = await User.findOne({username: req.body.createdBy});
+  const user: any = await User.findOne({username: req.currentUser.username});
   if (!user) throw new NotFound('User is not exist');
 
   const clients: any = await Client.find({createdBy: user.id});

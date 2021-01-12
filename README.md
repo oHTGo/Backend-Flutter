@@ -6,11 +6,14 @@ Clone this repo:
 
 ## Setup Project: 
 Install Yarn: `$ npm install yarn -g`
+
 Install dependencies: `$ yarn`
+
 Create a file called `.env` and `ormconfig.env` with the content taken from `.env.example` and `ormconfig.env.example` in folder `env_example`
 
 ## Setup Docker
 Setup Docker: Google
+
 Run `$ docker-compose up -d` and wait for docker to run the container
 
 ## Setup Postman API

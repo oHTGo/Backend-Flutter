@@ -10,13 +10,9 @@ class DefaultError extends Error {
   getCode() {
     if (this.statusCode) return this.statusCode;
     if (this instanceof BadRequest) return STATUS_CODE.BAD_REQUEST;
-
     if (this instanceof Unauthorized) return STATUS_CODE.UNAUTHORIZED;
-
     if (this instanceof Forbidden) return STATUS_CODE.FORBIDDEN;
-
     if (this instanceof NotFound) return STATUS_CODE.NOT_FOUND;
-
     return STATUS_CODE.INTERNAL_SERVER_ERROR;
   }
 }
@@ -37,7 +33,7 @@ const STATUS_CODE = {
 };
 
 const errorHandler = (
-  err: Request,
+  err: Error,
   req: Request,
   res: Response,
   next: NextFunction
@@ -48,7 +44,8 @@ const errorHandler = (
       message: err.message
     });
   }
-  // console.log(err);
+
+  //console.log(err);
 
   res.status(STATUS_CODE.INTERNAL_SERVER_ERROR).json({
     status: 'error',

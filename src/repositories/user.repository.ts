@@ -4,10 +4,11 @@ import {User} from '../entities/User.entity';
 import * as jwt from 'jsonwebtoken';
 import * as envConfig from '../config';
 import Hasher from '../helpers/bcrypt.helper';
+import sendSuccess from '../helpers/success.helper';
 
 @injectable()
 export class UserRepository {
-  public async login(username: string, password: string) {
+  public async login(username: string, password: string): Promise<any> {
     if (!(username && password))
       throw new BadRequest('User or password is empty');
 
@@ -21,6 +22,6 @@ export class UserRepository {
       envConfig.JWTSECRET,
       {expiresIn: '3d'}
     );
-    return {message: 'Logged in successfully', accessToken: token};
+    return sendSuccess('Logged in successfully', {accessToken: token});
   }
 }

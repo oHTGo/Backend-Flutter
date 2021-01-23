@@ -1,5 +1,3 @@
-import {Response} from 'express';
-
 export default function sendSuccess(
   message: string,
   data?: Object,

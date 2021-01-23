@@ -2,7 +2,7 @@ import {User} from '../entities/User.entity';
 import Hasher from '../helpers/bcrypt.helper';
 import * as chalk from 'chalk';
 
-export default async () => {
+const addSeeder = async () => {
   const user = await User.findOne({username: 'admin'});
   if (!user) {
     const pw = await Hasher.hash('password');
@@ -14,3 +14,5 @@ export default async () => {
     console.log(chalk.black(chalk.bgBlue('Create Admin User successfully!')));
   } else console.log(chalk.black(chalk.bgBlue('Admin User is already exist!')));
 };
+
+export {addSeeder};

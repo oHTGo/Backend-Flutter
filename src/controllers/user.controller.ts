@@ -1,4 +1,4 @@
-import {injectable, inject} from 'inversify';
+import {inject} from 'inversify';
 import {
   controller,
   BaseHttpController,
@@ -7,10 +7,9 @@ import {
 } from 'inversify-express-utils';
 import {UserRepository} from '../repositories/user.repository';
 import {TYPES} from '../constants/types';
-import {NextFunction, Response} from 'express';
-import {DefaultError, NotFound} from '../helpers/errors.helper';
+import * as envConfig from '../config';
 
-@controller('/user')
+@controller(`/api/${envConfig.VERSION}/users`)
 export class UserController extends BaseHttpController {
   constructor(
     @inject(TYPES.UserRepository) private userRepository: UserRepository
@@ -18,7 +17,7 @@ export class UserController extends BaseHttpController {
     super();
   }
 
-  @httpPost('/')
+  @httpPost('/auth/login')
   public async login(@requestBody() body: any) {
     const username = body.username;
     const password = body.password;

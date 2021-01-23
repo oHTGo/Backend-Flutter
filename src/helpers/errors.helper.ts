@@ -1,5 +1,5 @@
 import {NextFunction, Request, Response} from 'express';
-
+import * as _ from 'lodash';
 class DefaultError extends Error {
   public statusCode: number;
   constructor(message: string, externalStatusCode?: number) {
@@ -53,6 +53,24 @@ const errorHandler = (
   });
 };
 
+const notFoundHandler = (
+  err: Error,
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  next({
+    status: 'error',
+    message: 'Unable to locate the requested resource'
+  });
+};
+
+const errorParser = (validateErrors: any): any => {
+  return _.map(validateErrors, (item) => {
+    return _.values(item.constraints)[0];
+  });
+};
+
 export {
   DefaultError,
   BadRequest,
@@ -60,5 +78,7 @@ export {
   Forbidden,
   NotFound,
   STATUS_CODE,
-  errorHandler
+  errorHandler,
+  errorParser,
+  notFoundHandler
 };

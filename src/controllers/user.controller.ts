@@ -9,7 +9,7 @@ import {UserRepository} from '../repositories/user.repository';
 import {TYPES} from '../constants/types';
 import * as envConfig from '../config';
 
-@controller(`/api/${envConfig.VERSION}/users`)
+@controller('/users')
 export class UserController extends BaseHttpController {
   constructor(
     @inject(TYPES.UserRepository) private userRepository: UserRepository

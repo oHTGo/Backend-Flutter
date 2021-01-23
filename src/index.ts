@@ -12,7 +12,9 @@ createConnection()
   .then(async () => {
     const container = await setupContainer();
     // create server
-    const server = new InversifyExpressServer(container);
+    const server = new InversifyExpressServer(container, null, {
+      rootPath: `/api/${envConfig.VERSION}`
+    });
     // add seeder
     await addSeeder();
     server

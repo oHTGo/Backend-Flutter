@@ -16,7 +16,7 @@ import {Request} from 'express';
 import {IClient} from '../interfaces/Client.interface';
 import * as envConfig from '../config';
 
-@controller(`/api/${envConfig.VERSION}/clients`, TYPES.TokenCheckerMiddleware)
+@controller('/clients', TYPES.TokenCheckerMiddleware)
 export class ClientController extends BaseHttpController {
   constructor(
     @inject(TYPES.ClientRepository) private clientRepository: ClientRepository

@@ -3,7 +3,7 @@ import {injectable} from 'inversify';
 import {User} from '../entities/User.entity';
 import {BadRequest, DefaultError, NotFound} from '../helpers/errors.helper';
 import {errorParser} from '../helpers/errors.helper';
-import sendSuccess from '../helpers/success.helper';
+import {sendSuccess} from '../helpers/success.helper';
 import {Client} from '../entities/Client.entity';
 import {
   IResponseDataFull,

@@ -1,9 +1,14 @@
-export default function sendSuccess(
+import {Client} from './../entities/Client.entity';
+import {
+  IResponseDataFull,
+  IResponseDataShort
+} from '../interfaces/Response.interface';
+
+const sendSuccess = (
   message: string,
-  data?: Object,
-  statusCode?: number
-) {
-  return data
+  data?: Record<string, unknown> | Client | Client[] // eslint-disable-line @typescript-eslint/no-unused-vars
+): IResponseDataShort | IResponseDataFull => {
+  const _data = data
     ? {
         status: 'success',
         message: message,
@@ -13,4 +18,8 @@ export default function sendSuccess(
         status: 'success',
         message: message
       };
-}
+
+  return _data;
+};
+
+export {sendSuccess};

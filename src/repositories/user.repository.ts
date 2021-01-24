@@ -4,7 +4,7 @@ import {User} from '../entities/User.entity';
 import * as jwt from 'jsonwebtoken';
 import * as envConfig from '../config';
 import Hasher from '../helpers/bcrypt.helper';
-import sendSuccess from '../helpers/success.helper';
+import {sendSuccess} from '../helpers/success.helper';
 import {
   IResponseDataFull,
   IResponseDataShort

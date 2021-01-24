@@ -54,7 +54,11 @@ const errorHandler = (
   });
 };
 
-const notFoundHandler = (req: Request, res: Response, next: NextFunction) => {
+const notFoundHandler = (
+  req: Request,
+  res: Response,
+  next: NextFunction // eslint-disable-line @typescript-eslint/no-unused-vars
+): Response => {
   return res.status(STATUS_CODE.NOT_FOUND).json({
     status: 'error',
     message: 'Unable to locate the requested resource'

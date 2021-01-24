@@ -1,7 +1,7 @@
 import {Request, Response, NextFunction} from 'express';
 import * as envConfig from '../config';
 
-const setHeader = (req: Request, res: Response, next: NextFunction) => {
+const setHeader = (req: Request, res: Response, next: NextFunction): void => {
   // Website you wish to allow to connect
   res.setHeader('Access-Control-Allow-Origin', envConfig.CLIENT_URL);
   // Request methods you wish to allow

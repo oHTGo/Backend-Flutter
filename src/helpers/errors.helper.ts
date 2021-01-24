@@ -45,21 +45,14 @@ const errorHandler = (
     });
   }
 
-  //console.log(err);
-
-  res.status(STATUS_CODE.INTERNAL_SERVER_ERROR).json({
+  return res.status(STATUS_CODE.INTERNAL_SERVER_ERROR).json({
     status: 'error',
     message: 'Something went wrong'
   });
 };
 
-const notFoundHandler = (
-  err: Error,
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
-  next({
+const notFoundHandler = (req: Request, res: Response, next: NextFunction) => {
+  return res.status(400).json({
     status: 'error',
     message: 'Unable to locate the requested resource'
   });

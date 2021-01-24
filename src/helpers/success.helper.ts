@@ -1,8 +1,14 @@
+import {BaseEntity} from 'typeorm';
+import {
+  IResponseDataFull,
+  IResponseDataShort
+} from '../interfaces/Response.interface';
+
 export default function sendSuccess(
   message: string,
-  data?: Object,
-  statusCode?: number
-) {
+  data?: Record<string, unknown> | BaseEntity[] | BaseEntity,
+  statusCode?: number // eslint-disable-line @typescript-eslint/no-unused-vars
+): IResponseDataFull | IResponseDataShort {
   return data
     ? {
         status: 'success',

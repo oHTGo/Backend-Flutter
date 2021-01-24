@@ -53,12 +53,7 @@ const errorHandler = (
   });
 };
 
-const notFoundHandler = (
-  err: Error,
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
+const notFoundHandler = (req: Request, res: Response, next: NextFunction) => {
   next({
     status: 'error',
     message: 'Unable to locate the requested resource'

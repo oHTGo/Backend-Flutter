@@ -6,7 +6,7 @@ import {
   requestParam,
   httpPost,
   requestBody,
-  request,
+  request, // eslint-disable-line @typescript-eslint/no-unused-vars
   httpPut,
   httpDelete
 } from 'inversify-express-utils';
@@ -14,7 +14,10 @@ import {ClientRepository} from '../repositories/client.repository';
 import {TYPES} from '../constants/types';
 import {Request} from 'express';
 import {IClient} from '../interfaces/Client.interface';
-import * as envConfig from '../config';
+import {
+  IResponseDataFull,
+  IResponseDataShort
+} from '../interfaces/Response.interface';
 
 @controller('/clients', TYPES.TokenCheckerMiddleware)
 export class ClientController extends BaseHttpController {
@@ -25,7 +28,9 @@ export class ClientController extends BaseHttpController {
   }
 
   @httpGet('/')
-  public async getAll(@request() request: Request) {
+  public async getAll(
+    @request() request: Request
+  ): Promise<IResponseDataFull | IResponseDataShort> {
     return this.clientRepository.getAll(request.currentUser);
   }
 
@@ -33,7 +38,7 @@ export class ClientController extends BaseHttpController {
   public async create(
     @requestBody() client: IClient,
     @request() request: Request
-  ) {
+  ): Promise<IResponseDataFull | IResponseDataShort> {
     return this.clientRepository.create(
       client.fullName,
       client.description,
@@ -47,7 +52,7 @@ export class ClientController extends BaseHttpController {
   public async getById(
     @requestParam('id') id: string,
     @request() request: Request
-  ) {
+  ): Promise<IResponseDataFull | IResponseDataShort> {
     return this.clientRepository.getById(id, request.currentUser);
   }
 
@@ -56,7 +61,7 @@ export class ClientController extends BaseHttpController {
     @requestParam('id') id: string,
     @requestBody() client: IClient,
     @request() request: Request
-  ) {
+  ): Promise<IResponseDataFull | IResponseDataShort> {
     return this.clientRepository.updateById(
       id,
       client.fullName,
@@ -71,7 +76,7 @@ export class ClientController extends BaseHttpController {
   public async deleteById(
     @requestParam('id') id: string,
     @request() request: Request
-  ) {
+  ): Promise<IResponseDataFull | IResponseDataShort> {
     return this.clientRepository.deleteById(id, request.currentUser);
   }
 }

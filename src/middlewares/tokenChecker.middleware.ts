@@ -1,15 +1,15 @@
 import {NextFunction, Request, Response} from 'express';
-import {inject, injectable} from 'inversify';
-import {BaseMiddleware, interfaces} from 'inversify-express-utils';
+import {injectable} from 'inversify';
+import {BaseMiddleware} from 'inversify-express-utils';
 import * as envConfig from '../config';
 import * as jwt from 'jsonwebtoken';
 import {Forbidden, Unauthorized} from '../helpers/errors.helper';
 
 @injectable()
 export class TokenCheckerMiddleware extends BaseMiddleware {
-  public handler(req: Request, res: Response, next: NextFunction) {
+  public handler(req: Request, res: Response, next: NextFunction): void {
     try {
-      const token: any = req.headers.authorization.split(' ')[1];
+      const token: string = req.headers.authorization.split(' ')[1];
       const jwtPayload = jwt.verify(token, envConfig.JWTSECRET);
       this.httpContext.request.currentUser = jwtPayload;
       next();

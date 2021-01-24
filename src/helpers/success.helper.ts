@@ -1,14 +1,15 @@
-import {Client} from './../entities/Client.entity';
+import {BaseEntity} from 'typeorm';
 import {
   IResponseDataFull,
   IResponseDataShort
 } from '../interfaces/Response.interface';
 
-const sendSuccess = (
+export default function sendSuccess(
   message: string,
-  data?: Record<string, unknown> | Client | Client[] // eslint-disable-line @typescript-eslint/no-unused-vars
-): IResponseDataShort | IResponseDataFull => {
-  const _data = data
+  data?: Record<string, unknown> | BaseEntity[] | BaseEntity,
+  statusCode?: number // eslint-disable-line @typescript-eslint/no-unused-vars
+): IResponseDataFull | IResponseDataShort {
+  return data
     ? {
         status: 'success',
         message: message,
@@ -20,6 +21,6 @@ const sendSuccess = (
       };
 
   return _data;
-};
+}
 
 export {sendSuccess};

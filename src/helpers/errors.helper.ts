@@ -65,10 +65,11 @@ const notFoundHandler = (
   });
 };
 
-const errorParser = (validateErrors: ValidationError[]): string[] => {
-  return _.map(validateErrors, (item) => {
+const errorParser = (validateErrors: ValidationError[]): string => {
+  const errorArray = _.map(validateErrors, (item) => {
     return _.values(item.constraints)[0];
   });
+  return _.join(errorArray, ', ');
 };
 
 export {

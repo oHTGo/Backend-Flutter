@@ -1,14 +1,10 @@
 import {BaseEntity} from 'typeorm';
-import {
-  IResponseDataFull,
-  IResponseDataShort
-} from '../interfaces/Response.interface';
+import {IResponseData} from '../interfaces/Response.interface';
 
 export default function sendSuccess(
   message: string,
-  data?: Record<string, unknown> | BaseEntity[] | BaseEntity,
-  statusCode?: number // eslint-disable-line @typescript-eslint/no-unused-vars
-): IResponseDataFull | IResponseDataShort {
+  data?: Record<string, unknown> | BaseEntity[] | BaseEntity // eslint-disable-line @typescript-eslint/no-unused-vars
+): IResponseData {
   return data
     ? {
         status: 'success',
@@ -20,3 +16,5 @@ export default function sendSuccess(
         message: message
       };
 }
+
+export {sendSuccess};

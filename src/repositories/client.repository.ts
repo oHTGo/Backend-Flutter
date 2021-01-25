@@ -5,17 +5,12 @@ import {BadRequest, DefaultError, NotFound} from '../helpers/errors.helper';
 import {errorParser} from '../helpers/errors.helper';
 import {sendSuccess} from '../helpers/success.helper';
 import {Client} from '../entities/Client.entity';
-import {
-  IResponseDataFull,
-  IResponseDataShort
-} from '../interfaces/Response.interface';
+import {IResponseData} from '../interfaces/Response.interface';
 import {ICurrentUser} from '../interfaces/User.interface';
 
 @injectable()
 export class ClientRepository {
-  public async getAll(
-    currentUser: ICurrentUser
-  ): Promise<IResponseDataFull | IResponseDataShort> {
+  public async getAll(currentUser: ICurrentUser): Promise<IResponseData> {
     const user: User = await User.findOne({username: currentUser.username});
     if (!user) throw new NotFound('User is not exist');
 
@@ -31,7 +26,7 @@ export class ClientRepository {
     phoneNumber: string,
     avatarUrl: string,
     currentUser: ICurrentUser
-  ): Promise<IResponseDataFull | IResponseDataShort> {
+  ): Promise<IResponseData> {
     const user: User = await User.findOne({username: currentUser.username});
     if (!user) throw new NotFound('User is not exist');
 
@@ -44,8 +39,8 @@ export class ClientRepository {
 
     const validateErrors: ValidationError[] = await validate(client);
     if (validateErrors.length)
-      throw new BadRequest(errorParser(validateErrors).toString());
-    await client.save();
+      throw new BadRequest(errorParser(validateErrors));
+    await Client.save(client);
 
     return sendSuccess('Client was created successfully');
   }
@@ -53,7 +48,7 @@ export class ClientRepository {
   public async getById(
     id: string,
     currentUser: ICurrentUser
-  ): Promise<IResponseDataFull | IResponseDataShort> {
+  ): Promise<IResponseData> {
     const user: User = await User.findOne({username: currentUser.username});
     if (!user) throw new NotFound('User is not exist');
 
@@ -62,6 +57,7 @@ export class ClientRepository {
       createdBy: user
     });
     if (!client) throw new NotFound('Client is not found');
+
     return sendSuccess('Client was gotten successfully', client);
   }
 
@@ -72,7 +68,7 @@ export class ClientRepository {
     phoneNumber: string,
     avatarUrl: string,
     currentUser: ICurrentUser
-  ): Promise<IResponseDataFull | IResponseDataShort> {
+  ): Promise<IResponseData> {
     const user: User = await User.findOne({username: currentUser.username});
     if (!user) throw new NotFound('User is not exist');
 
@@ -90,9 +86,9 @@ export class ClientRepository {
 
     const validateErrors: ValidationError[] = await validate(client);
     if (validateErrors.length)
-      throw new BadRequest(errorParser(validateErrors).toString());
+      throw new BadRequest(errorParser(validateErrors));
 
-    await client.save();
+    await Client.save(client);
 
     return sendSuccess('Client was updated successfully');
   }
@@ -100,7 +96,7 @@ export class ClientRepository {
   public async deleteById(
     id: string,
     currentUser: ICurrentUser
-  ): Promise<IResponseDataFull | IResponseDataShort> {
+  ): Promise<IResponseData> {
     const user: User = await User.findOne({username: currentUser.username});
     if (!user) throw new NotFound('User is not exist');
 
@@ -109,7 +105,7 @@ export class ClientRepository {
       createdBy: user
     });
     if (!client) throw new NotFound('Client is not found');
-    await client.remove();
+    await Client.remove(client);
 
     return sendSuccess('Client was deleted successfully');
   }

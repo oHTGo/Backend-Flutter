@@ -1,18 +1,22 @@
 import {User} from '../entities/User.entity';
 import Hasher from '../helpers/bcrypt.helper';
-import * as chalk from 'chalk';
+import 'reflect-metadata';
+import {getContainer} from './container.helper';
+import {ILogger} from '../interfaces/Logger.interface';
+import {TYPES} from '../constants/types';
 
-const addSeeder = async (): Promise<void> => {
-  const user = await User.findOne({username: 'admin'});
-  if (!user) {
-    const pw = await Hasher.hash('password');
-    await User.create({
-      username: 'admin',
-      password: pw,
-      fullName: 'F-Code'
-    }).save();
-    console.log(chalk.black(chalk.bgBlue('Create Admin User successfully!')));
-  } else console.log(chalk.black(chalk.bgBlue('Admin User is already exist!')));
-};
-
-export {addSeeder};
+export class Seeder {
+  private logger = getContainer().get<ILogger>(TYPES.ILogger);
+  public async add(): Promise<void> {
+    const user = await User.findOne({username: 'admin'});
+    if (!user) {
+      const pw = await Hasher.hash('password');
+      await User.create({
+        username: 'admin',
+        password: pw,
+        fullName: 'F-Code'
+      }).save();
+      this.logger.success('Create Admin User successfully!');
+    } else this.logger.warning('Admin User is already exist!');
+  }
+}

@@ -6,17 +6,17 @@ import {InversifyExpressServer} from 'inversify-express-utils';
 import {errorHandler, notFoundHandler} from './helpers/errors.helper';
 import {setupContainer} from './helpers/container.helper';
 import {setHeader} from './helpers/request.helper';
-import {addSeeder} from './helpers/seeder.helper';
+import {Seeder} from './helpers/seeder.helper';
 
 createConnection()
   .then(async () => {
-    const container = await setupContainer();
+    const container = setupContainer();
     // create server
     const server = new InversifyExpressServer(container, null, {
       rootPath: `/api/${envConfig.VERSION}`
     });
     // add seeder
-    await addSeeder();
+    await new Seeder().add();
     server
       .setConfig((app) => {
         // add body parser

@@ -4,15 +4,20 @@ import {User} from '../entities/User.entity';
 import * as jwt from 'jsonwebtoken';
 import * as envConfig from '../config';
 import Hasher from '../helpers/bcrypt.helper';
-import sendSuccess from '../helpers/success.helper';
+import {sendSuccess} from '../helpers/success.helper';
+import {IResponseData} from '../interfaces/Response.interface';
 
 @injectable()
 export class UserRepository {
-  public async login(username: string, password: string): Promise<any> {
+  public async login(
+    username: string,
+    password: string
+  ): Promise<IResponseData> {
     if (!(username && password))
       throw new BadRequest('User or password is empty');
 
-    const user: any = await User.findOne({username: username});
+    const user: User = await User.findOne({username: username});
+
     if (!user) throw new NotFound('Username or password is incorrect');
     if (!Hasher.checkHash(password, user.password))
       throw new NotFound('Username or password is incorrect');

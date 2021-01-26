@@ -1,3 +1,4 @@
+import {ValidationError} from 'class-validator';
 import {NextFunction, Request, Response} from 'express';
 import * as _ from 'lodash';
 class DefaultError extends Error {
@@ -7,7 +8,7 @@ class DefaultError extends Error {
     if (arguments.length === 2) this.statusCode = externalStatusCode;
     this.message = message;
   }
-  getCode() {
+  getCode(): number {
     if (this.statusCode) return this.statusCode;
     if (this instanceof BadRequest) return STATUS_CODE.BAD_REQUEST;
     if (this instanceof Unauthorized) return STATUS_CODE.UNAUTHORIZED;
@@ -36,8 +37,8 @@ const errorHandler = (
   err: Error,
   req: Request,
   res: Response,
-  next: NextFunction
-) => {
+  next: NextFunction // eslint-disable-line @typescript-eslint/no-unused-vars
+): Response => {
   if (err instanceof DefaultError) {
     return res.status(err.getCode()).json({
       status: 'fail',
@@ -51,17 +52,22 @@ const errorHandler = (
   });
 };
 
-const notFoundHandler = (req: Request, res: Response, next: NextFunction) => {
-  return res.status(400).json({
+const notFoundHandler = (
+  req: Request,
+  res: Response,
+  next: NextFunction // eslint-disable-line @typescript-eslint/no-unused-vars
+): Response => {
+  return res.status(STATUS_CODE.NOT_FOUND).json({
     status: 'error',
     message: 'Unable to locate the requested resource'
   });
 };
 
-const errorParser = (validateErrors: any): any => {
-  return _.map(validateErrors, (item) => {
+const errorParser = (validateErrors: ValidationError[]): string => {
+  const errorArray = _.map(validateErrors, (item) => {
     return _.values(item.constraints)[0];
   });
+  return _.join(errorArray, ', ');
 };
 
 export {

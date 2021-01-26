@@ -26,15 +26,10 @@ describe('Get all clients', () => {
   });
 
   it('should fail because unexisted user', async () => {
-    try {
-      await container
+    expect(
+      container
         .resolve<ClientRepository>(ClientRepository)
-        .getAll(mockUnexistedCurrentUser);
-      fail('succeeded');
-    } catch (error) {
-      expect(error).toBeInstanceOf(NotFound);
-      expect(error.getCode()).toBe(404);
-      expect(error.message).toBe('User is not exist');
-    }
+        .getAll(mockUnexistedCurrentUser)
+    ).rejects.toEqual(new NotFound('User is not exist'));
   });
 });

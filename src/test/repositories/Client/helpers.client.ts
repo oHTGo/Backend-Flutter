@@ -1,4 +1,3 @@
-import {create} from 'domain';
 import {Client} from '../../../entities/Client.entity';
 
 const mockClientData = [

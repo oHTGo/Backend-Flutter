@@ -14,7 +14,7 @@ export default asyncCatch(async (req: Request, res: Response) => {
     createdBy: user.id
   });
   if (!client) throw new NotFound('Client is not found');
-  await client.remove();
+  await Client.remove(client);
 
   return sendSuccess(res, 'Client was deleted successfully');
 });

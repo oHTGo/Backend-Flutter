@@ -9,7 +9,7 @@ export default asyncCatch(async (req: Request, res: Response) => {
   const user: any = await User.findOne({username: req.currentUser.username});
   if (!user) throw new NotFound('User is not exist');
 
-  const clients: any = await Client.find({createdBy: user.id});
+  const clients: Client[] = await Client.find({createdBy: user});
   if (!clients) throw new DefaultError('Database connection error');
 
   return sendSuccess(res, 'Clients were gotten successfully', clients);

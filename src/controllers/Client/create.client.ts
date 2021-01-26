@@ -22,7 +22,7 @@ export default asyncCatch(async (req: Request, res: Response) => {
   const validateErrors: any = await validate(client);
   if (validateErrors.length) throw new BadRequest(errorParser(validateErrors));
 
-  await client.save();
+  await Client.save(client);
 
   return sendSuccess(res, 'Client was created successfully', {
     statusCode: 201

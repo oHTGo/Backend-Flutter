@@ -20,54 +20,30 @@ describe('Login user', () => {
   });
 
   it('should fail because password is empty', async () => {
-    try {
-      await container
-        .resolve<UserRepository>(UserRepository)
-        .login('admin', '');
-      fail('succeeded');
-    } catch (error) {
-      expect(error).toBeInstanceOf(BadRequest);
-      expect(error.getCode()).toBe(400);
-      expect(error.message).toBe('User or password is empty');
-    }
+    expect(
+      container.resolve<UserRepository>(UserRepository).login('admin', '')
+    ).rejects.toEqual(new BadRequest('User or password is empty'));
   });
 
   it('should fail because username is empty', async () => {
-    try {
-      await container
-        .resolve<UserRepository>(UserRepository)
-        .login('', 'password');
-      fail('succeeded');
-    } catch (error) {
-      expect(error).toBeInstanceOf(BadRequest);
-      expect(error.getCode()).toBe(400);
-      expect(error.message).toBe('User or password is empty');
-    }
+    expect(
+      container.resolve<UserRepository>(UserRepository).login('', 'password')
+    ).rejects.toEqual(new BadRequest('User or password is empty'));
   });
 
   it('should fail because wrong password', async () => {
-    try {
-      await container
+    expect(
+      container
         .resolve<UserRepository>(UserRepository)
-        .login('admin', 'fakePassword');
-      fail('succeeded');
-    } catch (error) {
-      expect(error).toBeInstanceOf(NotFound);
-      expect(error.getCode()).toBe(404);
-      expect(error.message).toBe('Username or password is incorrect');
-    }
+        .login('admin', 'fakePassword')
+    ).rejects.toEqual(new NotFound('Username or password is incorrect'));
   });
 
   it('should fail because unexisted username', async () => {
-    try {
-      await container
+    expect(
+      container
         .resolve<UserRepository>(UserRepository)
-        .login('fakeAdmin', 'password');
-      fail('succeeded');
-    } catch (error) {
-      expect(error).toBeInstanceOf(NotFound);
-      expect(error.getCode()).toBe(404);
-      expect(error.message).toBe('Username or password is incorrect');
-    }
+        .login('fakeAdmin', 'password')
+    ).rejects.toEqual(new NotFound('Username or password is incorrect'));
   });
 });

@@ -26,28 +26,18 @@ describe('Delete client by Id', () => {
   });
 
   it('should fail because unexisted user', async () => {
-    try {
-      await await container
+    expect(
+      container
         .resolve<ClientRepository>(ClientRepository)
-        .deleteById('1', mockUnexistedCurrentUser);
-      fail('succeeded');
-    } catch (error) {
-      expect(error).toBeInstanceOf(NotFound);
-      expect(error.getCode()).toBe(404);
-      expect(error.message).toBe('User is not exist');
-    }
+        .deleteById('1', mockUnexistedCurrentUser)
+    ).rejects.toEqual(new NotFound('User is not exist'));
   });
 
   it('should fail because unexisted client', async () => {
-    try {
-      await await container
+    expect(
+      container
         .resolve<ClientRepository>(ClientRepository)
-        .deleteById('2', mockExistedCurrentUser);
-      fail('succeeded');
-    } catch (error) {
-      expect(error).toBeInstanceOf(NotFound);
-      expect(error.getCode()).toBe(404);
-      expect(error.message).toBe('Client is not found');
-    }
+        .deleteById('2', mockExistedCurrentUser)
+    ).rejects.toEqual(new NotFound('Client is not found'));
   });
 });

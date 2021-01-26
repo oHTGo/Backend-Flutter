@@ -46,9 +46,7 @@ const errorHandler = (
     });
   }
 
-  //console.log(err);
-
-  res.status(STATUS_CODE.INTERNAL_SERVER_ERROR).json({
+  return res.status(STATUS_CODE.INTERNAL_SERVER_ERROR).json({
     status: 'error',
     message: 'Something went wrong'
   });

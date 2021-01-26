@@ -7,10 +7,7 @@ import {
 } from 'inversify-express-utils';
 import {UserRepository} from '../repositories/user.repository';
 import {TYPES} from '../constants/types';
-import {
-  IResponseDataFull,
-  IResponseDataShort
-} from '../interfaces/Response.interface';
+import {IResponseData} from '../interfaces/Response.interface';
 
 @controller('/users')
 export class UserController extends BaseHttpController {
@@ -23,7 +20,7 @@ export class UserController extends BaseHttpController {
   @httpPost('/auth/login')
   public async login(
     @requestBody() body: Record<string, string>
-  ): Promise<IResponseDataFull | IResponseDataShort> {
+  ): Promise<IResponseData> {
     const username: string = body.username;
     const password: string = body.password;
     return this.userRepository.login(username, password);

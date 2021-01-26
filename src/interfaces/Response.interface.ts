@@ -1,12 +1,7 @@
 import {BaseEntity} from 'typeorm';
 
-export interface IResponseDataFull {
+export interface IResponseData {
   status: string;
   message: string;
-  data: Record<string, unknown> | BaseEntity[] | BaseEntity;
-}
-
-export interface IResponseDataShort {
-  status: string;
-  message: string;
+  data?: Record<string, unknown> | BaseEntity[] | BaseEntity;
 }

@@ -1,4 +1,5 @@
-require('dotenv').config();
+import * as dotenv from 'dotenv';
+dotenv.config();
 console.log(`Running on ${process.env.NODE_ENV}`);
 
 const SALT = process.env.SALT;

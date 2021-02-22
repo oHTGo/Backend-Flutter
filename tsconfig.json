@@ -13,7 +13,8 @@
         "sourceMap": true,
         "baseUrl": "./",
         "typeRoots": [
-            "./src/types"
-          ]
+            "./src/types",
+            "./node_modules/@types"
+        ]
     }
 }

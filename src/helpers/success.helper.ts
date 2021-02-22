@@ -1,19 +1,20 @@
-import {Response} from 'express';
+import {BaseEntity} from 'typeorm';
+import {IResponseData} from '../interfaces/Response.interface';
 
 export default function sendSuccess(
-  response: Response,
   message: string,
-  data?: Object,
-  statusCode?: number
-) {
+  data?: Record<string, unknown> | BaseEntity[] | BaseEntity // eslint-disable-line @typescript-eslint/no-unused-vars
+): IResponseData {
   return data
-    ? response.status(statusCode || 200).json({
+    ? {
         status: 'success',
         message: message,
         data: data
-      })
-    : response.status(statusCode || 200).json({
+      }
+    : {
         status: 'success',
         message: message
-      });
+      };
 }
+
+export {sendSuccess};

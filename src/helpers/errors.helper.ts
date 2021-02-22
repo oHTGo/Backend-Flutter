@@ -1,5 +1,6 @@
+import {ValidationError} from 'class-validator';
 import {NextFunction, Request, Response} from 'express';
-
+import * as _ from 'lodash';
 class DefaultError extends Error {
   public statusCode: number;
   constructor(message: string, externalStatusCode?: number) {
@@ -7,16 +8,12 @@ class DefaultError extends Error {
     if (arguments.length === 2) this.statusCode = externalStatusCode;
     this.message = message;
   }
-  getCode() {
+  getCode(): number {
     if (this.statusCode) return this.statusCode;
     if (this instanceof BadRequest) return STATUS_CODE.BAD_REQUEST;
-
     if (this instanceof Unauthorized) return STATUS_CODE.UNAUTHORIZED;
-
     if (this instanceof Forbidden) return STATUS_CODE.FORBIDDEN;
-
     if (this instanceof NotFound) return STATUS_CODE.NOT_FOUND;
-
     return STATUS_CODE.INTERNAL_SERVER_ERROR;
   }
 }
@@ -37,23 +34,40 @@ const STATUS_CODE = {
 };
 
 const errorHandler = (
-  err: Request,
+  err: Error,
   req: Request,
   res: Response,
-  next: NextFunction
-) => {
+  next: NextFunction // eslint-disable-line @typescript-eslint/no-unused-vars
+): Response => {
   if (err instanceof DefaultError) {
     return res.status(err.getCode()).json({
       status: 'fail',
       message: err.message
     });
   }
-  // console.log(err);
 
-  res.status(STATUS_CODE.INTERNAL_SERVER_ERROR).json({
+  return res.status(STATUS_CODE.INTERNAL_SERVER_ERROR).json({
     status: 'error',
     message: 'Something went wrong'
   });
+};
+
+const notFoundHandler = (
+  req: Request,
+  res: Response,
+  next: NextFunction // eslint-disable-line @typescript-eslint/no-unused-vars
+): Response => {
+  return res.status(STATUS_CODE.NOT_FOUND).json({
+    status: 'error',
+    message: 'Unable to locate the requested resource'
+  });
+};
+
+const errorParser = (validateErrors: ValidationError[]): string => {
+  const errorArray = _.map(validateErrors, (item) => {
+    return _.values(item.constraints)[0];
+  });
+  return _.join(errorArray, ', ');
 };
 
 export {
@@ -63,5 +77,7 @@ export {
   Forbidden,
   NotFound,
   STATUS_CODE,
-  errorHandler
+  errorHandler,
+  errorParser,
+  notFoundHandler
 };

@@ -39,6 +39,7 @@ const errorHandler = (
   res: Response,
   next: NextFunction // eslint-disable-line @typescript-eslint/no-unused-vars
 ): Response => {
+  console.log(err);
   if (err instanceof DefaultError) {
     return res.status(err.getCode()).json({
       status: 'fail',

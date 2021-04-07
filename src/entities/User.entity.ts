@@ -5,7 +5,7 @@ import {
   OneToMany,
   BaseEntity
 } from 'typeorm';
-import {IsNotEmpty, IsString} from 'class-validator';
+import {IsEmail, IsNotEmpty, IsString} from 'class-validator';
 import {Client} from './Client.entity';
 
 @Entity()
@@ -17,6 +17,12 @@ export class User extends BaseEntity {
   @IsString()
   @IsNotEmpty()
   username: string;
+
+  @Column()
+  @IsString()
+  @IsNotEmpty()
+  @IsEmail()
+  email: string;
 
   @Column()
   @IsString()

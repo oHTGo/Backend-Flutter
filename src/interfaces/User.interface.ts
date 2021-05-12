@@ -3,4 +3,5 @@ export interface ICurrentUser {
   username: string;
   iat: number;
   exp: number;
+  iss: string;
 }

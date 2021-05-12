@@ -15,8 +15,6 @@ createConnection()
     const server = new InversifyExpressServer(container, null, {
       rootPath: `/api/${envConfig.VERSION}`
     });
-    // add seeder
-    await new Seeder().add();
     server
       .setConfig((app) => {
         // add body parser
@@ -34,6 +32,9 @@ createConnection()
       });
 
     const app = server.build();
+
+    // add seeder
+    await new Seeder().add();
     app.listen(envConfig.PORT);
   })
   .catch((err) => console.log(err));

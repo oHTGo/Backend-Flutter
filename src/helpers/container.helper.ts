@@ -7,7 +7,7 @@ import '../controllers/user.controller';
 import '../controllers/client.controller';
 import {TokenCheckerMiddleware} from '../middlewares/tokenChecker.middleware';
 import {Logger} from './logger.helper';
-import {ILogger} from 'src/interfaces/Logger.interface';
+import {ILogger} from '../interfaces/Logger.interface';
 
 const container = new Container();
 const setupContainer = (): Container => {

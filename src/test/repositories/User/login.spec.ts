@@ -13,7 +13,7 @@ describe('Login user', () => {
   it('should success', async () => {
     const res = await container
       .resolve<UserRepository>(UserRepository)
-      .login('admin', 'password');
+      .login('admin', 'password', '');
     expect(res.status).toBe('success');
     expect(res.message).toBe('Logged in successfully');
     expect(res.data).toBeDefined();
@@ -21,13 +21,15 @@ describe('Login user', () => {
 
   it('should fail because password is empty', async () => {
     expect(
-      container.resolve<UserRepository>(UserRepository).login('admin', '')
+      container.resolve<UserRepository>(UserRepository).login('admin', '', '')
     ).rejects.toEqual(new BadRequest('User or password is empty'));
   });
 
   it('should fail because username is empty', async () => {
     expect(
-      container.resolve<UserRepository>(UserRepository).login('', 'password')
+      container
+        .resolve<UserRepository>(UserRepository)
+        .login('', 'password', '')
     ).rejects.toEqual(new BadRequest('User or password is empty'));
   });
 
@@ -35,7 +37,7 @@ describe('Login user', () => {
     expect(
       container
         .resolve<UserRepository>(UserRepository)
-        .login('admin', 'fakePassword')
+        .login('admin', 'fakePassword', '')
     ).rejects.toEqual(new NotFound('Username or password is incorrect'));
   });
 
@@ -43,7 +45,7 @@ describe('Login user', () => {
     expect(
       container
         .resolve<UserRepository>(UserRepository)
-        .login('fakeAdmin', 'password')
+        .login('fakeAdmin', 'password', '')
     ).rejects.toEqual(new NotFound('Username or password is incorrect'));
   });
 });

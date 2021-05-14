@@ -16,7 +16,9 @@ export class Seeder {
       await User.create({
         username: 'admin',
         password: pw,
-        fullName: 'F-Code'
+        email: 'huynnse150807@fpt.edu.vn',
+        fullName: 'F-Code',
+        secret2Factor: ''
       }).save();
       this.logger.success('Create Admin User successfully!');
     } else this.logger.warning('Admin User is already exist!');

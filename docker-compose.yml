@@ -6,11 +6,8 @@ services:
     image: node:12.16.3
     depends_on:
       - mysql
-    command: >
-      sh -c "yarn &&
-            yarn start"
     ports:
-      - '5000:5000'
+      - ${PORT}:${PORT}
     working_dir: /app
     volumes:
       - ./:/app

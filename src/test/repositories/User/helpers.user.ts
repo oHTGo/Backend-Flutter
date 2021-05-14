@@ -1,3 +1,4 @@
+import {ICurrentUser} from '../../../interfaces/User.interface';
 import {User} from '../../../entities/User.entity';
 
 // mock object data
@@ -11,17 +12,19 @@ const mockUserData = [
 ];
 
 // mock object
-const mockExistedCurrentUser = {
+const mockExistedCurrentUser: ICurrentUser = {
   userId: '1',
   username: 'admin',
   iat: 1234567890,
-  exp: 9876543210
+  exp: 9876543210,
+  iss: 'local'
 };
 const mockUnexistedCurrentUser = {
   userId: '2',
   username: 'fakeAdmin',
   iat: 1234567890,
-  exp: 9876543210
+  exp: 9876543210,
+  iss: 'local'
 };
 const mockUser = new User();
 

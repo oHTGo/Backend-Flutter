@@ -6,12 +6,14 @@ import {
   requestBody,
   httpGet,
   queryParam,
+  request, // eslint-disable-line @typescript-eslint/no-unused-vars
   response // eslint-disable-line @typescript-eslint/no-unused-vars
 } from 'inversify-express-utils';
 import {UserRepository} from '../repositories/user.repository';
 import {TYPES} from '../constants/types';
 import {IResponseData} from '../interfaces/Response.interface';
 import {Response} from 'express';
+import {Request} from 'express';
 
 @controller('/users')
 export class UserController extends BaseHttpController {
@@ -27,7 +29,8 @@ export class UserController extends BaseHttpController {
   ): Promise<IResponseData> {
     const username: string = body.username;
     const password: string = body.password;
-    return this.userRepository.login(username, password);
+    const totp: string = body.totp;
+    return this.userRepository.login(username, password, totp);
   }
 
   @httpGet('/authorize')
@@ -54,6 +57,20 @@ export class UserController extends BaseHttpController {
       body.redirect_uri,
       body.code,
       body.code_verifier
+    );
+  }
+
+  @httpGet('/profile', TYPES.TokenCheckerMiddleware)
+  public async get(@request() request: Request): Promise<IResponseData> {
+    return this.userRepository.getProfile(request.currentUser);
+  }
+
+  @httpPost('/profile', TYPES.TokenCheckerMiddleware)
+  public async refresh(@request() request: Request): Promise<IResponseData> {
+    return this.userRepository.updateProfile(
+      request.currentUser,
+      request.body.fullName,
+      request.body.is2FactorEnabled
     );
   }
 }

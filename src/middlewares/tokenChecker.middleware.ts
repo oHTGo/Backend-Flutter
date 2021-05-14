@@ -24,6 +24,7 @@ export class TokenCheckerMiddleware extends BaseMiddleware {
     next: NextFunction
   ): Promise<void> {
     try {
+      if (!req.headers.authorization) throw new Forbidden('Invalid token');
       const [tokenType, token] = req.headers.authorization.split(' ');
       if (tokenType !== 'Bearer' && !token)
         throw new Forbidden('Invalid token type');

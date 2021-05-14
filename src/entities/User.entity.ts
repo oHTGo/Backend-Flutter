@@ -32,6 +32,10 @@ export class User extends BaseEntity {
   @IsString()
   fullName: string;
 
+  @Column()
+  @IsString()
+  secret2Factor: string;
+
   @OneToMany(() => Client, (client) => client.createdBy, {cascade: true})
   clients: Client[];
 }

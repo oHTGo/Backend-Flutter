@@ -32,6 +32,7 @@
     "mysql": "^2.14.1",
     "querystring": "^0.2.1",
     "reflect-metadata": "^0.1.13",
+    "speakeasy": "^2.0.0",
     "typeorm": "0.2.29"
   },
   "devDependencies": {
@@ -41,6 +42,7 @@
     "@types/jsonwebtoken": "^8.5.0",
     "@types/lodash": "^4.14.168",
     "@types/node": "^8.0.29",
+    "@types/speakeasy": "^2.0.5",
     "@typescript-eslint/eslint-plugin": "^4.11.1",
     "@typescript-eslint/parser": "^4.11.1",
     "chalk": "^4.1.0",

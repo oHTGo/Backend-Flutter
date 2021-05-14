@@ -15,7 +15,6 @@ Create a file called `.env` and `ormconfig.env` with the content taken from `.en
 Setup Docker: Google
 
 Run `$ docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d` and wait for docker to run the container
-Run `$ docker-compose -f docker-compose.yml -f docker-compose.prod.yml down` and wait for docker to shutdown the container
 
 ## Setup Postman API
 - Import 2 files:
